@@ -2,6 +2,7 @@ import fs from 'fs';
 import _ from 'lodash';
 import { TestResult } from './test-runner';
 import { Test } from '../schema/test';
+import logger from './logger';
 
 const RESULTS_FILE_NAME = 'results.txt';
 const SUCCESS_PREFIX = 'SUCCESS';
@@ -29,6 +30,7 @@ export class ResultsManager {
         try {
             content = fs.readFileSync(RESULTS_FILE_NAME, 'utf8');
         } catch (err) {
+            logger.error(`Couldn't find an existing result file. Continuing as it doesn't exist...`);
             return;
         }
 
@@ -37,14 +39,21 @@ export class ResultsManager {
             .filter((result) => result.includes(testOptionText) && result.includes(endpoint))
             .value();
 
+        logger.debug(
+            `Found ${relevantResults.length} relevant results for testing ${testOptionText} of endpoint: ${endpoint}`,
+        );
+
         if (relevantResults.length) {
             const lastResult = _.last(relevantResults);
+            logger.debug(`Identified last result for ${testOptionText} as: ${lastResult}`);
+
             const testOptionValueText = _(lastResult)
                 .split(ResultsManager.getResultTestOptionPrefix(testOptionText))
                 .last()!
                 .trim();
 
             result = _(testOptionValueText).split(' ').first();
+            logger.debug(`Found last result for ${testOptionText} value as: ${result}`);
         }
 
         return result;

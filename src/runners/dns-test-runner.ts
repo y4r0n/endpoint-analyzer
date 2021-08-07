@@ -1,6 +1,7 @@
 import { TestResult, TestRunner } from '../common/test-runner';
 import { Test } from '../schema/test';
 import dns from 'dns';
+import logger from '../common/logger';
 
 type DnsTestOptions = null;
 
@@ -17,11 +18,16 @@ export class DnsTestRunner extends TestRunner<DnsTestOptions> {
         });
     }
 
-    async run(test: Test<DnsTestOptions>): Promise<TestResult<DnsTestResult>> {
+    async run({ endpoint }: Test<DnsTestOptions>): Promise<TestResult<DnsTestResult>> {
+        logger.debug(`Testing DNS connectivity for endpoint: ${endpoint}`);
         try {
-            const address = await this.lookup(test.endpoint);
+            const address = await this.lookup(endpoint);
+
+            logger.debug(`Successfully tested DNS connectivity`);
             return { success: true, lookup: address };
         } catch (err) {
+            logger.error(`Failed to get DNS record`);
+            logger.error(err);
             return { success: false };
         }
     }
