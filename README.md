@@ -4,15 +4,15 @@ Endpoint Analyzer is a command-line tool that provides analysis for different ty
 
 ## Features
 - DNS lookup
-- HTTP/S connectivity test incl. Latency measurement
-  - Latency also supports a comparison feature using a pre-provided threshold.
+- HTTP/S connectivity test incl. Latency & Bandwidth measurements
+  - Latency/Bandwidth also supports a comparison feature using a pre-provided threshold.
 
 ## Configuration
 1. The tool expects an `analyzer.yml` file in the current working directory (See also `/examples` folder):<br>
 ```yml
 tests:
   - endpoint: 'http://www.google.com'   # Required. The endpoint that should be tested.
-    type: http                          # Required. The requested analysis type. Currenrly supporting: dns, http, https
+    type: http                          # Required. The requested analysis type. Currently supporting: dns, http, https
     options:                            # Optional. A set of additional options that should be tested for this specific analysis type.
       latency:                          # Optional. Tool will also test latency when configured. Can be either a boolean or an object.
         threshold: 0.01                 # Optional. A threshold that compares current latency with previous latency of test for specific type + endpoint. Can be either a number (seconds) or percentage.
