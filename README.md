@@ -38,7 +38,9 @@ FAIL: HTTPS test for https://www.google.com
 
 
 ## Quick Start
-1. Run: `npm run start`.
+1. Go to project root.
+2. Run: `npm install`.
+3. Run: `npm run start`.
 
 ## Develop
 1. Use `npm run start:dev` to use file hot-reloading during development.
