@@ -1,3 +1,5 @@
+# This is an example configuration file that can be used while running `npm run start` locally.
+
 tests:
   - endpoint: 'http://www.google.com'   # Required. The endpoint that should be tested.
     type: http                          # Required. The requested analysis type. Currenrly supporting: dns, http, https
@@ -5,7 +7,7 @@ tests:
       latency:                          # Optional. Tool will also test latency when configured. Can be either a boolean or an object.
         threshold: 0.01                 # Optional. A threshold that compares current latency with previous latency of test for specific type + endpoint. Can be either a number (seconds) or percentage.
       bandwidth:                        # Optional. Tool will also test download bandwidth when configured. Can be either a boolean or an object.
-        threshold: 1%                  # Optional. A threshold that compares current bandwidth with previous bandwidth of test for specific type + endpoint. Can be either a number (Mbps) or percentage.
+        threshold: 1%                   # Optional. A threshold that compares current bandwidth with previous bandwidth of test for specific type + endpoint. Can be either a number (Mbps) or percentage.
   - endpoint: 'www.google.com'
     type: dns
   - endpoint: 'https://www.google.com'

@@ -4,11 +4,11 @@ Endpoint Analyzer is a command-line tool that provides analysis for different ty
 
 ## Features
 - DNS lookup
-- HTTP/S connectivity test incl. Latency & Bandwidth measurements
+- HTTP/S connectivity test incl. Latency & Bandwidth measurements:
   - Latency/Bandwidth also supports a comparison feature using a pre-provided threshold.
 
 ## Configuration
-1. The tool expects an `analyzer.yml` file in the current working directory (See also `/examples` folder):<br>
+1. The tool expects an `analyzer.yml` file in the current working directory:<br>
 ```yml
 tests:
   - endpoint: 'http://www.google.com'   # Required. The endpoint that should be tested.
@@ -18,10 +18,6 @@ tests:
         threshold: 0.01                 # Optional. A threshold that compares current latency with previous latency of test for specific type + endpoint. Can be either a number (seconds) or percentage.
       bandwidth:                        # Optional. Tool will also test download bandwidth when configured. Can be either a boolean or an object.
         threshold: 10%                  # Optional. A threshold that compares current bandwidth with previous bandwidth of test for specific type + endpoint. Can be either a number (Mbps) or percentage.
-  - endpoint: 'www.google.com'
-    type: dns
-  - endpoint: 'https://www.google.com'
-    type: https
 ```
 > Note: The tool also supports passing a command-line parameter with filename
 
@@ -42,8 +38,7 @@ FAIL: HTTPS test for https://www.google.com
 
 
 ## Quick Start
-1. Go to `examples` folder.
-2. Run: `npm run start`.
+1. Run: `npm run start`.
 
 ## Develop
 1. Use `npm run start:dev` to use file hot-reloading during development.
