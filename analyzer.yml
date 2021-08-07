@@ -2,9 +2,10 @@ tests:
   - endpoint: 'http://www.google.com'   # Required. The endpoint that should be tested.
     type: http                          # Required. The requested analysis type. Currenrly supporting: dns, http, https
     options:                            # Optional. A set of additional options that should be tested for this specific analysis type.
-      latency:                          # Optional. Can be either a boolean or an object containing threshold.
-        threshold: 0.01                 # Optional. A threshold that compares current latency with previous latency of test for specific type + endpoint.
-                                        # Threshold can be either a number that represents seconds, or a string that represents percentage (ending with %)
+      latency:                          # Optional. Tool will also test latency when configured. Can be either a boolean or an object.
+        threshold: 0.01                 # Optional. A threshold that compares current latency with previous latency of test for specific type + endpoint. Can be either a number (seconds) or percentage.
+      bandwidth:                        # Optional. Tool will also test download bandwidth when configured. Can be either a boolean or an object.
+        threshold: 10%                  # Optional. A threshold that compares current bandwidth with previous bandwidth of test for specific type + endpoint. Can be either a number (Mbps) or percentage.
   - endpoint: 'www.google.com'
     type: dns
   - endpoint: 'https://www.google.com'
